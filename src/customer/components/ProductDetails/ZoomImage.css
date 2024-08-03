@@ -1,0 +1,24 @@
+.zoom-container {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+}
+
+.zoom-image {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.zoom-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: 200%;
+    pointer-events: none;
+    z-index: 10;
+    transition: opacity 0.3s ease;
+}

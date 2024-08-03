@@ -1,0 +1,103 @@
+@import url("https://fonts.googleapis.com/css?family=Raleway:400,400i,700");
+
+.search-box {
+    border: 3px solid black;
+    display: inline-block;
+    position: absolute;
+    border-radius: 50px;
+}
+
+.search-box input[type="text"] {
+    font-family: Raleway, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    width: 30px;
+    height: 30px;
+    padding: 5px 40px 5px 10px;
+    border: none;
+    box-sizing: border-box;
+    border-radius: 50px;
+    transition: width 800ms cubic-bezier(0.5, -0.5, 0.5, 0.5);
+}
+
+.search-box input[type="text"]:focus {
+    outline: none;
+}
+
+.search-box input[type="text"]:focus, .search-box input[type="text"]:not(:placeholder-shown) {
+    width: 350px;
+    transition: width 800ms cubic-bezier(0.5, -0.5, 0.5, 1.5);
+}
+
+.search-box input[type="text"]:focus + span, .search-box input[type="text"]:not(:placeholder-shown) + span {
+    bottom: 10px;
+    right: 10px;
+    transition: bottom 300ms ease-out 800ms, right 300ms ease-out 800ms;
+}
+
+/* .search-box input[type="text"]:focus + span::after, .search-box input[type="text"]:not(:placeholder-shown) + span::after {
+    top: 50%;
+    right: 10px;
+    opacity: 1;
+    transition: top 300ms ease-out 1100ms, right 300s ease-out 1100ms, opacity 300ms ease 1100ms;
+} */
+
+
+.search-box input[type="text"]:focus + span::before, .search-box input[type="text"]:not(:placeholder-shown) + span::before,
+.search-box input[type="text"]:focus + span::after, .search-box input[type="text"]:not(:placeholder-shown) + span::after {
+    opacity: 1;
+    top: 50%;
+    right: 10px;
+    transition: top 300ms ease-out 1100ms, right 300s ease-out 1100ms, opacity 300ms ease 1100ms;
+}
+
+
+.search-box span {
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    bottom: -13px;
+    right: -25px;
+    transition: bottom ease-out 300ms, right ease-out 300ms;
+}
+
+.search-box span::before, .search-box span::after {
+    content: '';
+    height: 15px;
+    border-left: solid 3px black;
+    position: absolute;
+    transform: rotate(-45deg);
+}
+
+.search-box span::after {
+    transform: rotate(45deg);
+    opacity: 0;
+    transition: top 300ms ease-out, right 300ms ease-out, opacity 300ms ease-out;
+}
+
+.search-box button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    outline: none;
+    transition: opacity 300ms ease;
+}
+
+.search-box button:hover {
+    opacity: 0.7;
+}
+
+.search-box button.hidden {
+    display: none;
+}
+
+.search-box .fa-magnifying-glass {
+    font-size: 20px;
+    color: black;
+}

@@ -1,0 +1,41 @@
+/* HomeCarousel.css */
+.carousel-image {
+    max-height: 600px; /* Bạn có thể thay đổi chiều cao theo nhu cầu */
+    width: 100%;
+    object-fit: contain; /* Giữ tỉ lệ ảnh mà không bị méo */
+}
+
+.carousel-container {
+    position: relative;
+    z-index: 1;
+}
+
+.carousel-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1000;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 100rem;
+}
+
+.carousel-control.prev {
+    left: 10px;
+}
+
+.carousel-control.next {
+    right: 10px;
+}
+
+
+@media screen and (max-width: 767.98px) {
+    .carousel-control {
+        display: none;
+    }
+}
