@@ -3,6 +3,7 @@ import { Outlet, Route, Routes } from "react-router-dom";
 import ErrorPage from "../error/ErrorPage";
 import TawkMessenger from "../chat/TawkMessenger";
 
+
 // Lazy loading
 const HomePage = lazy(() => import("../customer/pages/HomePage/HomePage"));
 const Cart = lazy(() => import("../customer/components/Cart/Cart"));
@@ -23,12 +24,21 @@ const PaymentSuccess = lazy(() =>
   import("../customer/components/Payment/PaymentSuccess")
 );
 
+const ConfirmEmail = lazy(() => import("../customer/Auth/ConfirmEmail"));
+const ResetPassword = lazy(() => import("../customer/Auth/ResetPassword"));
+
 const Profile = lazy(() => import("../customer/components/Profile/Profile"));
 const ProfileEditForm = lazy(() =>
   import("../customer/components/Profile/ProfileEditForm")
 );
 
-const SearchProduct = lazy(() => import("../customer/components/Product/SearchProduct"));
+const SearchProduct = lazy(() =>
+  import("../customer/components/Product/SearchProduct")
+);
+
+const TopLevelCategoryEdit = lazy(() =>
+  import("../customer/components/Product/SearchProduct")
+);
 
 const LoadingFallback = () => (
   <div className="flex items-center justify-center w-screen h-screen bg-white">
@@ -45,6 +55,8 @@ const CustomerRouters = () => {
           <Routes>
             <Route path="/login" element={<HomePage />} />
             <Route path="/register" element={<HomePage />} />
+            <Route path="/confirm-email" element={<ConfirmEmail />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
             <Route path="/error" element={<ErrorPage />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/profile/:id" element={<ProfileEditForm />} />
@@ -61,6 +73,7 @@ const CustomerRouters = () => {
             <Route path="/account/order" element={<Order />} />
             <Route path="/account/order/:orderId" element={<OrderDetails />} />
             <Route path="/payment/:orderId" element={<PaymentSuccess />} />
+
           </Routes>
           <Outlet />
         </div>

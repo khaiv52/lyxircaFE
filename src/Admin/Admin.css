@@ -1,49 +1,44 @@
-.sidebar-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    border-right: 1px solid #e0e0e0;
-    background-color: #f4f4f4;
-}
-
+/* Sidebar */
 .sidebar {
     position: fixed;
     display: flex;
     height: 100vh;
-    overflow: hidden;
+    z-index: 1;
+    top: 0;
+    left: 0;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 2px 0px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    transition: width 0.3s ease;
+    background-color: #ffffff;
 }
 
-@media (min-width: 1024px) {
-    .sidebar {
-        width: 56px; /* Sidebar width for small screens */
-        transition: all ease 0.3s;
-    }
-
-    .sidebar:hover {
-        width: 200px; /* Expanded width for small screens on hover */
-    }
-
-    .content {
-        width: 100%;
-        margin-left: 50px; /* Sidebar width for large screens */
-        padding: 16px;
-        transition: margin-left ease 0.3s, width ease 0.5s;
-    }
-
-    .sidebar:hover ~ .content {
-        margin-left: 200px;
-        width: 90%;
-    }
+/* Chiều rộng khi thu gọn */
+.sidebar.collapsed {
+    width: 56px;
 }
 
-@media (max-width: 1023px) {
-    .sidebar {
-        width: 56px; /* Sidebar width for small screens */
-    }
+/* Chiều rộng khi mở rộng */
+.sidebar.expanded {
+    width: 220px;
+}
 
-    .content {
-        margin-left: 50px;
-    }
+/* Chiều rộng khi hover nếu không ở trạng thái mở rộng */
+.sidebar:not(.expanded):hover {
+    width: 220px;
+}
+
+/* Nội dung */
+.content {
+    width: calc(100% - 56px); /* Chiều rộng mặc định khi sidebar thu gọn */
+    margin-left: 56px; /* Chiều rộng của sidebar khi thu gọn */
+    padding: 16px;
+    transition: margin-left 0.3s ease, width 0.5s ease;
+}
+
+/* Điều chỉnh nội dung khi sidebar mở rộng hoặc khi hover vào sidebar */
+.sidebar.expanded ~ .content,
+.sidebar:hover ~ .content {
+    margin-left: 220px;
+    width: calc(100% - 220px);
 }

@@ -2,7 +2,7 @@ import { Button, Grid, IconButton, TextField, Tooltip } from "@mui/material";
 import React, { lazy, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getAllUser, login } from "../../State/Auth/Action";
+import { getAllUser, getUser, login } from "../../State/Auth/Action";
 import { HelpOutline } from "@mui/icons-material";
 
 const ErrorBoundary = lazy(() => import("../../error/ErrorBoundary"));
@@ -11,6 +11,8 @@ const LoginForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { users } = useSelector((store) => store.auth);
+  const { user } = useSelector((store) => store.auth);
+  console.log("User: ", user);
   console.log(users);
 
   const [formValues, setFormValues] = useState({
@@ -33,6 +35,10 @@ const LoginForm = () => {
   };
 
   useEffect(() => {
+    dispatch(getUser());
+  }, [user, dispatch]);
+
+  useEffect(() => {
     dispatch(getAllUser());
   }, [dispatch]);
 
@@ -45,7 +51,7 @@ const LoginForm = () => {
         tempErrors.email = "Email is required.";
       } else {
         // Kiểm tra định dạng email
-        const emailRegex = /^[a-zA-Z][a-zA-Z0-9]*@([a-z])+\.(com|org|net|edu)$/;
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
         const username = formValues.email.split("@")[0];
         if (username.length < 5) {
           tempErrors.email =
@@ -90,7 +96,9 @@ const LoginForm = () => {
 
         dispatch(login(userData));
         console.log("User data:", userData);
-        // API call or other actions
+        if (users) {
+          navigate("/");
+        }
       }
     } catch (error) {
       console.error("Error in handleSubmit:", error);
@@ -101,8 +109,12 @@ const LoginForm = () => {
   console.log("errors:", errors);
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <div className="flex flex-col items-center justify-center space-y-5">
+      <h1 className="text-2xl font-bold lg:text-3xl">LOGIN</h1>
+      <form
+        onSubmit={handleSubmit}
+        className="space-y-5 w-[300px] sm:w-[350px] lg:w-[400px] flex flex-col justify-center items-center"
+      >
         <Grid container spacing={3}>
           <Grid item xs={12}>
             <TextField
@@ -118,7 +130,7 @@ const LoginForm = () => {
               helperText={errors.email ? errors.email : ""}
               InputProps={{
                 endAdornment: (
-                  <Tooltip title="Enter a valid email address. The username must be at least 5 characters long and contain only letters and numbers.">
+                  <Tooltip title="Enter a valid email address. The username must be at least 5 characters long and contain only letters and numbers. Example: username@gmail.com">
                     <IconButton size="small" edge="end">
                       <HelpOutline fontSize="small"></HelpOutline>
                     </IconButton>
@@ -181,6 +193,21 @@ const LoginForm = () => {
             sx={{ display: "flex", alignItems: "center" }}
           >
             Register
+          </Button>
+        </div>
+        <div className="flex flex-col items-center">
+          <div className="py-1 m-0 ">
+            Forgot your password ?
+          </div>
+          <Button
+            className="ml-5"
+            sx={{
+              display: "flex",
+              alignItems: "center",
+            }}
+            onClick={() => navigate("/confirm-email")}
+          >
+            Reset Password
           </Button>
         </div>
       </div>

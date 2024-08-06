@@ -22,7 +22,14 @@ import {
   UPDATE_USER_FAILURE,
   UPDATE_USER_REQUEST,
   UPDATE_USER_SUCCESS,
+  CONFIRM_EMAIL_USER_REQUEST,
+  CONFIRM_EMAIL_USER_SUCCESS,
+  CONFIRM_EMAIL_USER_FAILURE,
+  RESET_PASSWORD_REQUEST,
+  RESET_PASSWORD_SUCCESS,
+  RESET_PASSWORD_FAILURE
 } from "./ActionType";
+import { toast } from "react-toastify";
 
 // Token
 // const token = localStorage.getItem("jwt");
@@ -150,5 +157,28 @@ export const getAdminData = () => async (dispatch) => {
     } else {
       dispatch(getAdminDataFailure(error.message || "An error occurred while fetching admin data."))
     }
+  }
+}
+
+export const confirmEmailUserRequest = (email) => async (dispatch) => {
+  dispatch({type: CONFIRM_EMAIL_USER_REQUEST})
+  try {
+    await api.post('/api/auth/confirm-email', {email})
+    console.log("This is request from user: ", email);
+    dispatch({type: CONFIRM_EMAIL_USER_SUCCESS})
+  } catch(error) {
+    dispatch({type: CONFIRM_EMAIL_USER_FAILURE, payload: error.message});
+  }
+};
+
+export const resetPassword = (data) => async (dispatch) => {
+  dispatch({type: RESET_PASSWORD_REQUEST});
+  try {
+    const response = api.put(`/api/users/reset-password`, data);
+    console.log("Message from server: ", response.data);
+    dispatch({type: RESET_PASSWORD_SUCCESS});
+  } catch (error) {
+    dispatch({type: RESET_PASSWORD_FAILURE, payload: error.message});
+    toast.error('Failed to reset password. Please try again.')
   }
 }

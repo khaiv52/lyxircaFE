@@ -91,10 +91,22 @@ export default function Navigation() {
     if (auth.user) {
       handleClose();
     }
-    if (location.pathname === "/login" || location.pathname === "/register") {
-      navigate(-1);
+    // if (location.pathname === "/login" || location.pathname === "/register") {
+    //   navigate(-1);
+    // }
+
+    if(location.pathname === "/") {
+      handleClose();
     }
-  }, [auth.user]);
+    
+    if(location.pathname === "/login") {
+      handleOpen();
+    }
+    
+    if(location.pathname === "/confirm-email") {
+      handleClose();
+    }
+  }, [auth.user, location.pathname]);
 
   const handleLogout = () => {
     setShowLogoutConfirm(true);

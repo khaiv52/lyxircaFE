@@ -1,10 +1,10 @@
 import { Grid } from "@mui/material";
 import React, { lazy } from "react";
-import Achievement from "./Achievement";
 
+const Achievement = lazy(() => import("./Achievement"));
 const MonthlyOverview = lazy(() => import("./MonthlyOverview"));
-const OrdersTableView = lazy(() => import("../view/OrderTableView"));
-const ProductsTableView = lazy(() => import("../view/ProductsTableView"));
+const OrdersTableView = lazy(() => import("../../view/OrderTableView"));
+const ProductsTableView = lazy(() => import("../../view/ProductsTableView"));
 
 const AdminDashboard = () => {
   return (

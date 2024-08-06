@@ -55,7 +55,7 @@ const RegisterForm = () => {
     if (!formValues.email) {
       tempErrors.email = "Email is required";
     } else {
-      const emailRegex = /^[a-zA-Z][a-zA-Z0-9]*@([a-z])+\.(com|org|net|edu)$/;
+      const emailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
       const username = formValues.email.split("@")[0];
       if (!emailRegex.test(formValues.email)) {
         tempErrors.email = "Email is not valid.";
@@ -74,8 +74,7 @@ const RegisterForm = () => {
     } else {
       const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
       if (!passwordRegex.test(formValues.password)) {
-        tempErrors.password =
-          "Password is not valid";
+        tempErrors.password = "Password is not valid";
       }
     }
 
@@ -108,6 +107,7 @@ const RegisterForm = () => {
       // check if email already exists
 
       dispatch(register(userData));
+      navigate("/");
 
       // try {
       //   // Your form submission logic here
@@ -120,8 +120,12 @@ const RegisterForm = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <div className="flex flex-col items-center justify-center space-y-5">
+      <h1 className="text-2xl font-bold lg:text-3xl">REGISTER</h1>
+      <form
+        onSubmit={handleSubmit}
+        className="space-y-5 w-[300px] sm:w-[350px] lg:w-[400px] flex flex-col justify-center items-center"
+      >
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6}>
             <TextField
@@ -184,8 +188,8 @@ const RegisterForm = () => {
               error={!!errors.email}
               helperText={errors.email ? errors.email : ""}
               InputProps={{
-                endAdornment : (
-                  <Tooltip title="Enter a valid email address. The username must be at least 5 characters long and contain only letters and numbers.">
+                endAdornment: (
+                  <Tooltip title="Enter a valid email address. The username must be at least 5 characters long and contain only letters and numbers. Example: username@gmail.com">
                     <IconButton edge="end" size="small">
                       <HelpOutline fontSize="small"></HelpOutline>
                     </IconButton>
@@ -207,7 +211,7 @@ const RegisterForm = () => {
               error={!!errors.password}
               helperText={errors.password ? errors.password : ""}
               InputProps={{
-                endAdornment : (
+                endAdornment: (
                   <Tooltip title="Password must contain at least one uppercase letter, one lowercase letter, one number, and be at least 8 characters long.">
                     <IconButton edge="end" size="small">
                       <HelpOutline fontSize="small"></HelpOutline>
@@ -230,7 +234,7 @@ const RegisterForm = () => {
               error={!!errors.confirmPassword}
               helperText={errors.confirmPassword ? errors.confirmPassword : ""}
               InputProps={{
-                endAdornment : (
+                endAdornment: (
                   <Tooltip title="Re-enter your password to confirm it matches the above password.">
                     <IconButton edge="end" size="small">
                       <HelpOutline fontSize="small"></HelpOutline>
