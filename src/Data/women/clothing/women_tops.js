@@ -23,8 +23,8 @@ export const women_top = [
     ],
     "quantity": 100,
     "topLevelCategory": "Women",
-    "secondLevelSectionName": "Clothing",
-    "thirdLevelItemName": "Tops",
+    "secondLevelCategory": "Clothing",
+    "thirdLevelCategory": "Tops",
     "description": "This versatile t-shirt is a classic wardrobe essential, perfect layered under your favorite jacket or cardigan, or wear on its own for casual, everyday style."
   },
   {
@@ -51,8 +51,8 @@ export const women_top = [
     ],
     "quantity": 100,
     "topLevelCategory": "Women",
-    "secondLevelSectionName": "Clothing",
-    "thirdLevelItemName": "Tops",
+    "secondLevelCategory": "Clothing",
+    "thirdLevelCategory": "Tops",
     "description": "Collared neckline,3/4 sleeves/Long sleeves. Midi length,A-line,Fit and flare design. Button front,All over floral print"
   },
   {
@@ -79,8 +79,8 @@ export const women_top = [
     ],
     "quantity": 100,
     "topLevelCategory": "Women",
-    "secondLevelSectionName": "Clothing",
-    "thirdLevelItemName": "Tops",
+    "secondLevelCategory": "Clothing",
+    "thirdLevelCategory": "Tops",
     "description": "Check out our Aurora Top! This cotton jersey top features cotton poplin balloon short sleeves alongwith a scoop high neckline."
   },
   {
@@ -107,8 +107,8 @@ export const women_top = [
     ],
     "quantity": 100,
     "topLevelCategory": "Women",
-    "secondLevelSectionName": "Clothing",
-    "thirdLevelItemName": "Tops",
+    "secondLevelCategory": "Clothing",
+    "thirdLevelCategory": "Tops",
     "description": "Trendy basic junior wide neck drop shoulder short sleeve hi-lo top with front tie."
   }
 ]
