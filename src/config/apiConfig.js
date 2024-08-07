@@ -1,6 +1,7 @@
 import axios from "axios";
 
-export const API_BASE_URL = "https://lyxrica-be.onrender.com";
+export const API_BASE_URL = "http://localhost:5454";
+// export const API_BASE_URL = "https://lyxrica-be.onrender.com";
 
 // Lấy JWT từ localStorage
 const jwt = localStorage.getItem("jwt");
@@ -24,5 +25,7 @@ api.interceptors.request.use(
   },
   error => Promise.reject(error)
 );
+
+api.defaults.withCredentials = true;
 
 export default api;
